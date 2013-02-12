@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!--Euler Problem #1
+
+        If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
+        The sum of these multiples is 23.
+
+        Find the sum of all the multiples of 3 or 5 below 1000.
+    -->
+
+        <script language = "javascript"></script>
+    </head>
+    <body>
+
+      <script>
+          /* (int, int) -> list of ints
+
+           return a list of all the multiples of num given the range of range
+
+           */
+          function mult_of_num (range,num)
+          {
+
+              var count = 1;
+              var list = [];
+
+              while (count < range)
+              {
+
+                  if (count%num == 0)
+                  {
+                      list.push(count);
+                      count = count + 1;
+                  };
+
+                  count = count + 1;
+              }
+
+              return list;
+          }
+
+          /* (array, int, int) -> array
+
+          return an array with any indexed value that is both divisible by num1 and num2 removed. removes duplicates from the two lists for the multiples.
+
+           */
+          function remove_dup_lists(list, num1, num2)
+          {
+
+              var count = 1;
+
+              while (count <= list.length)
+              {
+
+                    if ( list[count-1]%num1==0 && list[count-1]%num2==0)
+
+                    {
+                      list.splice((count-1),1);
+                    }
+
+                    count = count +1;
+
+              }
+
+              return list;
+
+          }
+
+         /* (list) -> int
+
+         return the sum of all the indexed values in the array
+
+          */
+         function sum_list(list)
+          {
+              var total = 0;
+              for(var i = 0; i < list.length; i++){
+                  total += list[i];
+              }
+
+              return total;
+
+          }
+
+
+
+
+          var five_list = mult_of_num(1000, 5);
+
+          var three_list = mult_of_num(1000,3);
+
+          var format_list = remove_dup_lists(five_list, 5, 3);
+
+          var total = sum_list(format_list)+ sum_list(three_list);
+
+          document.write("<br/>"+ "total: " + total);
+
+      </script>
+    </body>
+    </html>
